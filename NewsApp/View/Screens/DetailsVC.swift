@@ -9,23 +9,23 @@ import UIKit
 
 class DetailsVC: UIViewController, NewsViewModelDelegate{
     
-    @IBOutlet weak var bodyLabelScrollView: UIScrollView!
     @IBOutlet weak var sectionNameLabel: UILabel!
     @IBOutlet weak var bodyTextLabel: UILabel!
     @IBOutlet weak var webTitleLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var webPublicationDateLabel: UILabel!
-    var newsId = ""
+    
     private let viewModel = NewsViewModel()
-    
-    
+    var newsId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.bodyTextLabel.sizeToFit()
         viewModel.getNewsDetails(id: newsId)
         viewModel.onFetchCompleted = {
             self.title = self.viewModel.singleNews.webTitle
@@ -36,19 +36,10 @@ class DetailsVC: UIViewController, NewsViewModelDelegate{
                 self.thumbnailImageView.image = thumbnailImage
             }
             self.webPublicationDateLabel.text = self.viewModel.singleNews.webPublicationDate.toDate()
-           
-            
         }
     }
     
     func didSelectNewsItem(with id: String) {
           self.newsId = id
       }
-    func setData() {
-        
-    }
-    
-
-    
-
 }

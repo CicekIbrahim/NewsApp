@@ -13,7 +13,7 @@ class NewsViewModel{
     
     weak var delegate: NewsViewModelDelegate?
     private let newsAPI = NewsAPI()
-    
+    var placeholderUrl = "https://dogruer.com/wp-content/themes/consultix/images/no-image-found-360x260.png"
     var newsList: [NewsModel] = []
     var singleNews: NewsModel = NewsModel(id: "", sectionName: "", webTitle: "", webPublicationDate: "", fields: Fields(trailText: nil, thumbnail: "", bodyText: ""))
     var onFetchCompleted: (() -> Void)?
@@ -34,7 +34,6 @@ class NewsViewModel{
             case .failure(let error):
                 self.onFetchFailed?(error)
             }
-            
         }
     }
     
@@ -51,24 +50,21 @@ class NewsViewModel{
         }
     }
     
-    
     func loadMoreNews() {
         currentPage += 1
         newsAPI.getNews(page: currentPage) { result in
             switch result {
-            case .success(let news):
-                self.newsList = self.newsList + news
+            case .success(let moreNews):
+                self.newsList = self.newsList + moreNews
                 self.onFetchCompleted?()
             case .failure(let error):
                 print(error)
             }
         }
-        
-        
     }
     
     func thumbnailImage(for newsItem: NewsModel, completion: @escaping (UIImage?) -> Void) {
-        guard let thumbnailUrl = URL(string: newsItem.fields.thumbnail ?? "https://dogruer.com/wp-content/themes/consultix/images/no-image-found-360x260.png") else {
+        guard let thumbnailUrl = URL(string: newsItem.fields.thumbnail ?? placeholderUrl) else {
             completion(nil)
             return
             
@@ -77,7 +73,6 @@ class NewsViewModel{
             completion(response.value)
         }
     }
-    
 }
 
 protocol NewsViewModelDelegate: AnyObject {

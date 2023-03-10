@@ -19,7 +19,6 @@ class NewsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
     }
     
     func configure(with newsItem: NewsModel, delegate: NewsViewModelDelegate?) {
@@ -35,7 +34,4 @@ class NewsCell: UITableViewCell {
             delegate?.didSelectNewsItem(with: newsId)
         }
     }
-    
-    
-
 }

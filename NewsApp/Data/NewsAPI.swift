@@ -28,7 +28,6 @@ struct NewsAPI {
                        case .failure(let error):
                            completion(.failure(error))
                        }
-            
         }
     }
     
@@ -44,11 +43,8 @@ struct NewsAPI {
                        case .failure(let error):
                            completion(.failure(error))
                        }
-            
         }
     }
-    
-    
 }
 
 struct NewsResponse: Decodable {
@@ -60,10 +56,8 @@ struct SingleNewResponse: Decodable {
 }
 
 struct Response: Decodable {
-    
     let currentPage : Int?
     let results: [NewsModel]?
-  
 }
 
 struct SingleResponse: Decodable {

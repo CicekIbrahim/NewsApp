@@ -9,39 +9,39 @@ import UIKit
 
 class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, NewsViewModelDelegate{
     
-    
-    
     @IBOutlet weak var newsTableView: UITableView!
+    
     private let viewModel = NewsViewModel()
     var newID = ""
+    
         override func viewDidLoad() {
             super.viewDidLoad()
             viewModel.delegate = self
             newsTableView.delegate = self
             newsTableView.dataSource = self
             title = "News"
-            
             viewModel.onFetchCompleted = {
                 self.newsTableView.reloadData()
             }
             viewModel.onFetchFailed = { errorMessage in
-                print(errorMessage)
+                let alertController = UIAlertController(title: "Error", message: errorMessage.localizedDescription, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true)
             }
             viewModel.fetchNews()
         }
    
     func didSelectNewsItem(with newsId: String) {
         let detailsVC = DetailsVC()
-        detailsVC.didSelectNewsItem(with: newsId)
         self.newID = newsId
         performSegue(withIdentifier: "toDetailsVC", sender: nil)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsVC"{
             let destinationVC = segue.destination as! DetailsVC
-            destinationVC.newsId = newID
+            destinationVC.didSelectNewsItem(with: newID)
         }
     }
     
@@ -57,7 +57,6 @@ class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, New
         }
         if indexPath.row == viewModel.newsList.count - 1 {
             viewModel.loadMoreNews()
-            newsTableView.reloadData()
             print(viewModel.newsList.count)
             }
         return cell
@@ -73,18 +72,3 @@ class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, New
 }
    
 
-extension String {
-    func toDate() -> String? {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "dd-MM-yyyy"
-
-        if let date = dateFormatterGet.date(from: self) {
-            return dateFormatterPrint.string(from: date)
-        } else {
-            return nil
-        }
-    }
-}
