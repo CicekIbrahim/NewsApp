@@ -14,6 +14,7 @@ class DetailsVC: UIViewController, NewsViewModelDelegate{
     @IBOutlet weak var webTitleLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var webPublicationDateLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     private let viewModel = NewsViewModel()
     var newsId = ""
@@ -21,6 +22,8 @@ class DetailsVC: UIViewController, NewsViewModelDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
+      
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

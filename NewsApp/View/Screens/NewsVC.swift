@@ -33,16 +33,9 @@ class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, New
         }
    
     func didSelectNewsItem(with newsId: String) {
-        let detailsVC = DetailsVC()
-        self.newID = newsId
-        performSegue(withIdentifier: "toDetailsVC", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDetailsVC"{
-            let destinationVC = segue.destination as! DetailsVC
-            destinationVC.didSelectNewsItem(with: newID)
-        }
+        let detailsVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailsVC") as! DetailsVC
+        detailsVC.didSelectNewsItem(with: newsId)
+        navigationController?.pushViewController(detailsVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,11 +48,13 @@ class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, New
         viewModel.thumbnailImage(for: newsItem) { thumbnailImage in
             cell.thumbnailImageView.image = thumbnailImage
         }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.newsList.count - 1 {
             viewModel.loadMoreNews()
-            print(viewModel.newsList.count)
             }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

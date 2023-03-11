@@ -24,7 +24,7 @@ struct NewsAPI {
         AF.request(baseUrl, parameters: parameters).validate().responseDecodable(of: NewsResponse.self) { response in
             switch response.result {
                        case .success(let newsResponse):
-                completion(.success(newsResponse.response.results!))
+                completion(.success(newsResponse.response.results))
                        case .failure(let error):
                            completion(.failure(error))
                        }
@@ -57,7 +57,7 @@ struct SingleNewResponse: Decodable {
 
 struct Response: Decodable {
     let currentPage : Int?
-    let results: [NewsModel]?
+    let results: [NewsModel]
 }
 
 struct SingleResponse: Decodable {

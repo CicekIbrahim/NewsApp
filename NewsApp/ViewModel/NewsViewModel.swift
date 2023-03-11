@@ -67,7 +67,6 @@ class NewsViewModel{
         guard let thumbnailUrl = URL(string: newsItem.fields.thumbnail ?? placeholderUrl) else {
             completion(nil)
             return
-            
         }
         AF.request(thumbnailUrl).responseImage { response in
             completion(response.value)
