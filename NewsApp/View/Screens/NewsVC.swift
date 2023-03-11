@@ -12,7 +12,7 @@ class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, New
     @IBOutlet weak var newsTableView: UITableView!
     
     private let viewModel = NewsViewModel()
-    var newID = ""
+    
     
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -20,6 +20,7 @@ class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, New
             newsTableView.delegate = self
             newsTableView.dataSource = self
             title = "News"
+            
             viewModel.onFetchCompleted = {
                 self.newsTableView.reloadData()
             }
@@ -39,6 +40,7 @@ class NewsVC: UIViewController , UITableViewDelegate, UITableViewDataSource, New
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        newsTableView.register(UINib(nibName: "NewsCell", bundle: nil), forCellReuseIdentifier: "newsCell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsCell
         let newsItem = viewModel.newsList[indexPath.row]
         cell.sectionNameLabel.text = newsItem.sectionName

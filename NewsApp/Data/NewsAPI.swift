@@ -19,7 +19,6 @@ struct NewsAPI {
             "show-fields":"thumbnail,trailText",
             "page-size": 10,
             "page": page
-            
         ]
         AF.request(baseUrl, parameters: parameters).validate().responseDecodable(of: NewsResponse.self) { response in
             switch response.result {

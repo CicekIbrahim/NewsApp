@@ -22,7 +22,7 @@ class DetailsVC: UIViewController, NewsViewModelDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-      
+        
 
     }
     

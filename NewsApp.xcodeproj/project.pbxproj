@@ -19,6 +19,7 @@
 		42E9C6DC29B9DDEF00C06634 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9C6DB29B9DDEF00C06634 /* NewsCell.swift */; };
 		42E9C6DE29B9DFFC00C06634 /* NewsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9C6DD29B9DFFC00C06634 /* NewsAPI.swift */; };
 		42E9C6E029B9E1AB00C06634 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E9C6DF29B9E1AB00C06634 /* NewsViewModel.swift */; };
+		42FF590D29BD1B0B00D8F51C /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42FF590C29BD1B0B00D8F51C /* NewsCell.xib */; };
 		A439E6F4E8D8D2FA4DC77FF4 /* Pods_NewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1AC3CB89EBF31E88C23B82 /* Pods_NewsApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		42E9C6DB29B9DDEF00C06634 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		42E9C6DD29B9DFFC00C06634 /* NewsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPI.swift; sourceTree = "<group>"; };
 		42E9C6DF29B9E1AB00C06634 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		42FF590C29BD1B0B00D8F51C /* NewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsCell.xib; sourceTree = "<group>"; };
 		6496BA35681A7C2CF7311090 /* Pods-NewsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.debug.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CAC65026CC9E508B97C0107A /* Pods-NewsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsApp.release.xcconfig"; path = "Target Support Files/Pods-NewsApp/Pods-NewsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 		42E9C6E529BA1E0E00C06634 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				42FF590C29BD1B0B00D8F51C /* NewsCell.xib */,
 				42E9C6DB29B9DDEF00C06634 /* NewsCell.swift */,
 			);
 			path = Widgets;
@@ -235,6 +238,7 @@
 			files = (
 				42E9C6CE29B9D63900C06634 /* LaunchScreen.storyboard in Resources */,
 				42E9C6CB29B9D63900C06634 /* Assets.xcassets in Resources */,
+				42FF590D29BD1B0B00D8F51C /* NewsCell.xib in Resources */,
 				42E9C6C929B9D63900C06634 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
